@@ -2,7 +2,7 @@ import React from "react";
 import { SlotActivationStates } from "../App";
 
 type CharacterSheetProps = {
-    handleSlotActivation: (event: any) => void;
+    handleSlotActivation: (event: React.MouseEvent<SVGPathElement>) => void;
     shoulderSelected: boolean;
     slotActivationStates: SlotActivationStates;
 };

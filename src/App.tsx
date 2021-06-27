@@ -17,15 +17,10 @@ function App() {
     const [slotActivationState, setSlotActivationState] =
         useState<SlotActivationStates>(initialSlotActivationState);
 
-    // TODO: Fix this awful typing, no idea what it even should be (HTMLElement & SVGElement ???)
-    const handleSlotActivation = (event: any) => {
-        const target = event.target;
-        console.log(target);
-        console.log(target.dataset);
-        console.log(target.dataset.slot);
+    const handleSlotActivation = (event: React.MouseEvent<SVGPathElement>) => {
+        const target = event.currentTarget;
         const slotToUpdate = target.dataset.slot as keyof SlotActivationStates;
         const currentState = slotActivationState[slotToUpdate];
-        console.log(currentState);
         const newState: SlotActivationStates = {
             ...slotActivationState,
             [slotToUpdate]: !currentState,
