@@ -1,14 +1,45 @@
-import React from "react";
+import React, { useState } from "react";
 import logo from "./logo.svg";
 import { Counter } from "./features/counter/Counter";
 import "./App.css";
 
-import TestSvg from "./components/testSvg";
+import CharacterSheet from "./components/CharacterSheet";
+
+export type SlotActivationStates = {
+    shoulder: boolean;
+};
+
+const initialSlotActivationState: SlotActivationStates = {
+    shoulder: false,
+};
 
 function App() {
+    const [slotActivationState, setSlotActivationState] =
+        useState<SlotActivationStates>(initialSlotActivationState);
+
+    // TODO: Fix this awful typing, no idea what it even should be (HTMLElement & SVGElement ???)
+    const handleSlotActivation = (event: any) => {
+        const target = event.target;
+        console.log(target);
+        console.log(target.dataset);
+        console.log(target.dataset.slot);
+        const slotToUpdate = target.dataset.slot as keyof SlotActivationStates;
+        const currentState = slotActivationState[slotToUpdate];
+        console.log(currentState);
+        const newState: SlotActivationStates = {
+            ...slotActivationState,
+            [slotToUpdate]: !currentState,
+        };
+        setSlotActivationState(newState);
+    };
+
     return (
         <div className="App">
-            <TestSvg shoulderSelected={false} />
+            <CharacterSheet
+                handleSlotActivation={handleSlotActivation}
+                shoulderSelected={false}
+                slotActivationStates={slotActivationState}
+            />
             {/* <header className="App-header">
                 <img src={logo} className="App-logo" alt="logo" />
                 <Counter />

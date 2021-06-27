@@ -1,10 +1,14 @@
 import React from "react";
+import { SlotActivationStates } from "../App";
 
-type TestSvgProps = {
+type CharacterSheetProps = {
+    handleSlotActivation: (event: any) => void;
     shoulderSelected: boolean;
+    slotActivationStates: SlotActivationStates;
 };
 
-const TestSvg = (props: TestSvgProps) => {
+const CharacterSheet = (props: CharacterSheetProps) => {
+    const { handleSlotActivation, slotActivationStates } = props;
     return (
         <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -21,7 +25,10 @@ const TestSvg = (props: TestSvgProps) => {
                     id="shoulder"
                     d="M14.833 66.213H31.671V81.44699999999999H14.833z"
                     data-slot="shoulder"
-                    fill={props.shoulderSelected ? "blue" : "grey"}
+                    fill={slotActivationStates.shoulder ? "blue" : "grey"}
+                    onClick={(e) => {
+                        handleSlotActivation(e);
+                    }}
                 ></path>
                 <path
                     id="back"
@@ -80,4 +87,4 @@ const TestSvg = (props: TestSvgProps) => {
     );
 };
 
-export default TestSvg;
+export default CharacterSheet;
