@@ -1,13 +1,17 @@
 import React from "react";
 import { SlotActivationStates } from "../App";
+import { getSlotFillColor } from "../utils/character-sheet.utils";
 
 type CharacterSheetProps = {
-    handleSlotActivation: (event: React.MouseEvent<SVGPathElement>) => void;
+    handleSlotActivationToggle: (
+        event: React.MouseEvent<SVGPathElement>
+    ) => void;
     slotActivationStates: SlotActivationStates;
 };
 
 const CharacterSheet = (props: CharacterSheetProps) => {
-    const { handleSlotActivation, slotActivationStates } = props;
+    const { handleSlotActivationToggle, slotActivationStates } = props;
+
     return (
         <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -24,9 +28,9 @@ const CharacterSheet = (props: CharacterSheetProps) => {
                     id="shoulder"
                     d="M14.833 66.213H31.671V81.44699999999999H14.833z"
                     data-slot="shoulder"
-                    fill={slotActivationStates.shoulder ? "blue" : "grey"}
+                    fill={getSlotFillColor(slotActivationStates.shoulder)}
                     onClick={(e) => {
-                        handleSlotActivation(e);
+                        handleSlotActivationToggle(e);
                     }}
                 ></path>
                 <path

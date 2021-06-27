@@ -17,7 +17,9 @@ function App() {
     const [slotActivationState, setSlotActivationState] =
         useState<SlotActivationStates>(initialSlotActivationState);
 
-    const handleSlotActivation = (event: React.MouseEvent<SVGPathElement>) => {
+    const handleSlotActivationToggle = (
+        event: React.MouseEvent<SVGPathElement>
+    ) => {
         const target = event.currentTarget;
         const slotToUpdate = target.dataset.slot as keyof SlotActivationStates;
         const currentState = slotActivationState[slotToUpdate];
@@ -31,7 +33,7 @@ function App() {
     return (
         <div className="App">
             <CharacterSheet
-                handleSlotActivation={handleSlotActivation}
+                handleSlotActivationToggle={handleSlotActivationToggle}
                 slotActivationStates={slotActivationState}
             />
             {/* <header className="App-header">
