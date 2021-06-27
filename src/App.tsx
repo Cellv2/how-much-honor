@@ -32,7 +32,6 @@ function App() {
         <div className="App">
             <CharacterSheet
                 handleSlotActivation={handleSlotActivation}
-                shoulderSelected={false}
                 slotActivationStates={slotActivationState}
             />
             {/* <header className="App-header">
