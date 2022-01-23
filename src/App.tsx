@@ -4,13 +4,28 @@ import { Counter } from "./features/counter/Counter";
 import "./App.css";
 
 import CharacterSheet from "./components/CharacterSheet";
-
-export type SlotActivationStates = {
-    shoulder: boolean;
-};
+import { SlotActivationStates } from "./types/equipment.types";
 
 const initialSlotActivationState: SlotActivationStates = {
-    shoulder: false,
+    head: false,
+    neck: false,
+    shoulders: false,
+    back: false,
+    chest: false,
+    bracers: false,
+    gloves: false,
+    belt: false,
+    legs: false,
+    boots: false,
+    ring_1: false,
+    ring_2: false,
+    trinket_1: false,
+    trinket_2: false,
+    two_hand: false,
+    one_hand: false,
+    off_hand: false,
+    ranged: false,
+    libram: false,
 };
 
 function App() {
@@ -22,6 +37,7 @@ function App() {
     ) => {
         const target = event.currentTarget;
         const slotToUpdate = target.dataset.slot as keyof SlotActivationStates;
+        console.log(slotToUpdate);
         const currentState = slotActivationState[slotToUpdate];
         const newState: SlotActivationStates = {
             ...slotActivationState,
